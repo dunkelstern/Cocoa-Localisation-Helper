@@ -1,0 +1,68 @@
+This project aims to make life easier for any iOS developer that has
+to translate her Apps into more than one language. Apple's `genstrings`
+tool is very dumb and sorts strings automatically by alphabet, I prefer
+to have them sorted by module they appear in to have a little more
+context.
+
+Additionally I find it very annoying how Apple thinks localization of
+XIB files should work (File duplication? Really?), so I implemented a
+different kind of replacement method that does not need the XIB files
+to be duplicated or edited by some script that is not included in
+Xcode by default.
+
+
+Extract localizable strings
+===========================
+
+Usage: `python localisationextractor.py`
+
+Will scan all subdirectories in the current directory for `*.m` files and
+`*.xib` files to extract localizable strings. It may catch files lying
+around that don't belong to your project at all because it just does
+a recursive filesystem traversal. It does not read your `*.xcodeproj`.
+
+Currently only `NSLocalizedString(<string>, <comment>)` strings are
+extracted from m-files. `NSLocalizedStringFromTable` and friends are
+ignored but will be added in the future.
+
+Use in conjunction with L5er class to localize XIB files at run time
+without interface duplication.
+
+
+Autotranslate XIB file strings
+==============================
+
+Usage:
+1. Put your translated strings in your "Localizable.strings" file
+   (you may use the localisationextractor.py script to get a
+   untranslated file to base your strings file on)
+2. Include `L5er.h` in your `prefix.pch` file
+3. In `- (void)viewDidLoad;` call `[self.view autotranslate];`. The
+   L5er class categories for UIView subclasses view will traverse
+   the view hierarchy recursively and try to replace all strings
+   it finds.
+
+Currently supported UIView subclasses
+-------------------------------------
+
+* UIView: just traverses subviews
+* UIButton
+* UILabel
+* UITextView
+* UITabBar
+* UIToolbar
+* UISegmentedControl
+* UINavigationBar
+
+If you want to add autotranslate to your custom UIView subclasses
+just implement a `-(void)autotranslate;` method, it will be called
+automatically.
+
+
+TODO
+====
+
+1. Write a script to merge existing `Localizable.strings` with
+   newly extracted strings.
+2. Make the python script accept commandline parameters.
+3. Provide example project.
