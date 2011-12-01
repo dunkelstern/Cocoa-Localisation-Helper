@@ -33,6 +33,7 @@ Autotranslate XIB file strings
 ==============================
 
 Usage:
+
 1. Put your translated strings in your "Localizable.strings" file
    (you may use the localisationextractor.py script to get a
    untranslated file to base your strings file on)
