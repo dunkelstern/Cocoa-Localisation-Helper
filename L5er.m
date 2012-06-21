@@ -31,6 +31,12 @@
 
 #import "L5er.h"
 
+@interface L5er () {
+    NSString *table;
+    NSBundle *bundle;
+}
+@end
+
 @implementation UIView (l5erExtension)
 
 - (void)autotranslate {

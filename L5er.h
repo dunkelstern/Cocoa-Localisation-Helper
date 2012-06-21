@@ -51,10 +51,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface L5er : NSObject {
-    NSString *table;
-    NSBundle *bundle;
-}
+@interface L5er : NSObject
 
 @property (readonly) NSString *table;
 @property (readonly) NSBundle *bundle;
