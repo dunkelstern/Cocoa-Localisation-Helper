@@ -41,7 +41,7 @@
 
 - (void)autotranslate {
     for(UIView *subview in [self subviews]) {
-		if([subview respondsToSelector:@selector(autotranslate:)]) {
+		if([subview respondsToSelector:@selector(autotranslate)]) {
             [subview autotranslate];
         }
     }
