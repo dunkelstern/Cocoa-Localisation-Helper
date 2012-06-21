@@ -123,3 +123,7 @@
 @interface UINavigationBar (l5erExtension)
 - (void)autotranslate;
 @end
+
+@interface UIBarButtonItem (l5erExtension)
+- (void)autotranslate;
+@end

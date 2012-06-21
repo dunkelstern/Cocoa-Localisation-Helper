@@ -116,7 +116,19 @@
     L5er *l5er = [L5er l5er];
 	for (UINavigationItem *item in [self items]) {
 		[item setTitle:[l5er localizedString:[item title]]];
+        [item.leftBarButtonItem autotranslate];
+        [item.rightBarButtonItem autotranslate];
 	}
+}
+
+@end
+
+@implementation UIBarButtonItem (l5erExtension)
+
+- (void)autotranslate {
+    L5er *l5er = [L5er l5er];
+    [self setTitle:[l5er localizedString:[self title]]];
+    [self.customView autotranslate];
 }
 
 @end
